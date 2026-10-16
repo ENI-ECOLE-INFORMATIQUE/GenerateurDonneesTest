@@ -63,4 +63,30 @@ code { background: #f1f5f9; border-radius: 4px; padding: 1px 5px; font-size: .9e
 .explication .cle { font-family: monospace; color: #6ee7b7; }
 .explication code { background: #0f172a; color: #e2e8f0; }
 
-.pied { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 8px; }
+.pied {
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  margin-top: 28px; padding: 20px 24px; border-top: 4px solid #34d399;
+  border-radius: 10px; background: #1e293b; color: #e2e8f0;
+}
+.pied p { margin: 0; }
+.pied .pied-titre { margin-bottom: 5px; color: #fff; font-size: 15px; font-weight: 700; }
+.pied-description { color: #cbd5e1; font-size: 13px; }
+.pied-infos {
+  display: grid; grid-template-columns: auto auto; align-items: center; gap: 8px 20px;
+  font-size: 12px;
+}
+.pied-auteur { display: flex; align-items: center; gap: 12px; }
+.pied-auteur a { color: #6ee7b7; font-weight: 600; text-decoration: none; }
+.pied-auteur a:hover { color: #fff; text-decoration: underline; }
+.pied-auteur span, .pied-version, .pied-copyright { color: #cbd5e1; }
+.pied-version { display: flex; align-items: center; gap: 8px; }
+.pied-version span:first-child {
+  padding: 4px 8px; border-radius: 4px; background: #334155; color: #6ee7b7; font-weight: 600;
+}
+.pied-copyright { grid-column: 1 / -1; color: #94a3b8; text-align: right; }
+
+@media (max-width: 640px) {
+  .pied { align-items: flex-start; flex-direction: column; gap: 16px; padding: 18px; }
+  .pied-infos { width: 100%; grid-template-columns: 1fr; gap: 10px; }
+  .pied-copyright { grid-column: auto; text-align: left; }
+}
