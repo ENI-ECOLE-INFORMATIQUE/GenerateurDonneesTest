@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Générateur de données de test — Démo JS pour testeurs</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>🧪 Générateur de données de test</h1>
+      <p class="sous-titre">
+        Démo JavaScript pour testeurs logiciels — générez des jeux de données, explorez les cas limites,
+        et comprenez le code qui les produit. Tout est en HTML / CSS / JS pur, sans framework.
+      </p>
+
+      <!-- ===== PANNEAU DE CONTRÔLE ===== -->
+      <div class="carte">
+        <h2>⚙️ Paramètres de génération</h2>
+        <div class="controles">
+          <div>
+            <label for="nb">Nombre de personnes</label>
+            <input type="number" id="nb" min="1" max="20" value="5" />
+          </div>
+          <div>
+            <label for="domaine">Domaine email</label>
+            <input type="text" id="domaine" value="test.fr" />
+          </div>
+          <button class="btn-bleu" id="btn-generer">🎲 Générer</button>
+          <button class="btn-gris" id="btn-trier" disabled>🔤 Trier par ville</button>
+          <button class="btn-vert" id="btn-json" disabled>📋 Copier en JSON</button>
+          <button class="btn-ambre" id="btn-csv" disabled>📄 Exporter en CSV</button>
+        </div>
+        <p class="message" id="message"></p>
+      </div>
+
+      <!-- ===== TABLEAU DES DONNÉES ===== -->
+      <div class="carte" id="zone-tableau" style="display:none">
+        <h2 id="titre-tableau">📊 Données générées</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Prénom</th><th>Nom</th><th>Email</th><th>Âge</th><th>Ville</th>
+            </tr>
+          </thead>
+          <tbody id="corps-tableau"></tbody>
+        </table>
+        <p class="note">
+          💡 En JS, chaque ligne est un <b>objet</b> <code>{ prenom, nom, email, age, ville }</code>,
+          et le tableau HTML est construit avec la méthode <code>map()</code> puis <code>innerHTML</code>.
+        </p>
+      </div>
+
+      <!-- ===== CAS LIMITES ===== -->
+      <div class="carte">
+        <h2>⚠️ Cas limites — les données qui font naître les bugs</h2>
+        <button class="btn-ambre" id="btn-limites">Afficher les cas limites</button>
+        <div class="limites-grille" id="limites" style="display:none"></div>
+      </div>
+
+      <!-- ===== EXPLICATION DU CODE ===== -->
+      <div class="carte explications">
+        <h2>🔍 Le code expliqué — notions JS utilisées</h2>
+        <div class="explications-grille">
+          <div class="explication">
+            <p class="cle">Math.random() + Math.floor()</p>
+            <p><code>Math.random()</code> renvoie un nombre entre 0 et 1 ; multiplié puis arrondi avec
+            <code>Math.floor()</code>, on obtient un entier aléatoire : la base du hasard.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">tableau[index]</p>
+            <p>Les tableaux sont numérotés à partir de <b>0</b>. <code>PRENOMS[0]</code> vaut "Marie".
+            Piège classique : le dernier élément est à <code>length - 1</code>.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">objets { clé: valeur }</p>
+            <p>Une "personne" est un objet : <code>{ prenom: "Marie", age: 28 }</code>.
+            On lit une valeur avec <code>personne.age</code>.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">querySelector et addEventListener</p>
+            <p><code>document.querySelector()</code> retrouve un élément HTML, et
+            <code>addEventListener("click", ...)</code> exécute une fonction quand on clique.
+            C'est la base de toute page interactive, sans framework.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">map() et join()</p>
+            <p><code>map()</code> transforme chaque élément d'un tableau en autre chose (une ligne
+            de tableau ou de CSV) ; <code>join()</code> colle les éléments en une seule chaîne.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">template literals : `texte ${variable}`</p>
+            <p>Les backticks permettent d'insérer des variables dans une chaîne — plus lisible que la
+            concaténation avec <code>+</code>. Utilisés partout dans ce générateur.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">JSON.stringify()</p>
+            <p>Convertit des objets JS en texte JSON — utile pour préparer des fichiers de données
+            exploitables par d'autres outils.</p>
+          </div>
+          <div class="explication">
+            <p class="cle">Blob et URL.createObjectURL</p>
+            <p>Pour le CSV : on fabrique un "fichier" en mémoire (<code>Blob</code>), on lui donne une
+            adresse temporaire (<code>createObjectURL</code>), et on déclenche le téléchargement via un
+            lien cliqué par programmation.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="pied">Démo pédagogique — chaque bouton illustre une notion JS réutilisable dans vos activités de test.</p>
+      <p>&copy; 2026 Testeur Logiciel</p>
+      <p>ENI Ecole Informatique - <a href="https://www.linkedin.com/in/sanchezdenis/" target="_blank" rel="noopener">Denis Sanchez</a> - V1.0 - 2026/10/16</p>
+    </div>
+
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
